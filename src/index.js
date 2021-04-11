@@ -25,6 +25,20 @@ const App = () => {
 			})
 		}
 
+    const catchPokemon = (pokemon) => {
+		setPokedex(state => {
+			const monExists = (state.filter(p => pokemon.id == p.id).length > 0);
+
+			if (!monExists) {
+				state = [...state, pokemon]
+				state.sort(function (a, b) {
+					return a.id - b.id
+				})
+			}
+			return state
+		})
+		encounterWildPokemon();
+	}
 
   return (
     <div className="app-wrapper">
@@ -36,7 +50,7 @@ const App = () => {
 			<h2>Wild Encounter</h2>
 			<img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + wildPokemon.id + ".png"} className="sprite"/>
 			<h3>{wildPokemon.name}</h3>
-			<button className="catch-btn">CATCH</button>
+			<button className="catch-btn" onClick={() => catchPokemon(wildPokemon)}>CATCH</button>
 		</section>
 
 		<section className="pokedex">
@@ -55,4 +69,4 @@ const App = () => {
   )
 }
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
