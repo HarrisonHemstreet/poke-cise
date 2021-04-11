@@ -5,11 +5,11 @@ import './index.css';
 
 const App = () => {
 	const [pokedex, setPokedex] = useState([]);
-	const [wildPokemon, setWildPokemon] = useEffect({});
+	const [wildPokemon, setWildPokemon] = useState({});
 
 	useEffect(() => {
     	encounterWildPokemon();
-  		}, [pokedex]);
+  		}, []);
 
     const pokeId = () => {
 		const min = Math.ceil(1);
@@ -22,22 +22,27 @@ const App = () => {
 	   		.get('https://pokeapi.co/api/v2/pokemon/' + pokeId())
 			.then(response => {
 				setWildPokemon(response.data);
-			})
+			});
 		}
 
     const catchPokemon = (pokemon) => {
 		setPokedex(state => {
-			const monExists = (state.filter(p => pokemon.id == p.id).length > 0);
+			const monExists = (state.filter(p => pokemon.id === p.id).length > 0);
 
 			if (!monExists) {
 				state = [...state, pokemon]
 				state.sort(function (a, b) {
 					return a.id - b.id
-				})
+				});
 			}
-			return state
-		})
+			return state;
+		});
 		encounterWildPokemon();
+	}
+
+
+	const releasePokemon = id => {
+		setPokedex(state => state.filter(p => p.id !== id))
 	}
 
   return (
@@ -46,9 +51,10 @@ const App = () => {
 			<h1 className="title">Poke-Cise</h1>	
 			<h3 className="subtitle">With Pokemon using the PokeAPI!</h3>	
 		</header>
+
 		<section className="wild-pokemon">
 			<h2>Wild Encounter</h2>
-			<img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + wildPokemon.id + ".png"} className="sprite"/>
+			<img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + wildPokemon.id + ".png"} className="sprite" alt="pokemon sprite"/>
 			<h3>{wildPokemon.name}</h3>
 			<button className="catch-btn" onClick={() => catchPokemon(wildPokemon)}>CATCH</button>
 		</section>
@@ -58,9 +64,9 @@ const App = () => {
 			<div className="pokedex-list">
 				{pokedex.map(pokemon => (
 					<div className="pokemon" key={pokemon.id}>
-						<img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + wildPokemon.id + ".png"} className="sprite"/>
+						<img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + pokemon.id + ".png"} className="sprite" alt="pokemon sprite"/>
 						<h3 className="pokemon-name">{pokemon.name}</h3>
-						<button className="remove">&times;</button>
+						<button className="remove" onClick={() => releasePokemon(pokemon.id)}>&times;</button>
 				    </div>
 				))}
 			</div>
