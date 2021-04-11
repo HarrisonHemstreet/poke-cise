@@ -13,7 +13,7 @@ const App = () => {
 
     const pokeId = () => {
 		const min = Math.ceil(1);
-		const max = Math.floor(151);
+		const max = Math.floor(800);
 		return Math.floor(Math.random() * (max - min + 1)) + min
 	}
 
@@ -76,3 +76,28 @@ const App = () => {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
+
+/*
+TODO's:
+1. create login system
+2. Create a home page, maybe with a video explanation
+
+TODO's on current page:
+1. top RIGHT CORNER: "LOGOUT" button that will return you to the home page. Above the "LOGOUT" button, have a "Welcome, [USER]"
+2. Top corner Left, HOW MANY POKEMON CAUGHT out of HOW MANY?
+3. Right on the Banner with the wild pokemon, Current exercise with a youtube link
+4. left on the banner with the wild pokemon, time remaining before a new pokemon is drawn (if there is any time)
+
+TODO's on the database:
+WORKOUT DATABSE:
+1. need to make a database specific to workouts, yoututbe video how to links, time needed to do exercie
+
+USERS DATABASE:
+1. id,username, password
+
+USER (single) DATABASE:
+1. users id, user id, username, password, how many pokemon caught out of how many?
+
+Individual User DATABASE (saved pokedex):
+1. user id, pokemon name, sprite url, exercise done for said pokemon, how much time it took to get this pokemon/do the exercise,
+*/
