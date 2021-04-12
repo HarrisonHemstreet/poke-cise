@@ -100,4 +100,8 @@ USER (single) DATABASE:
 
 Individual User DATABASE (saved pokedex):
 1. user id, pokemon name, sprite url, exercise done for said pokemon, how much time it took to get this pokemon/do the exercise,
+
+BUG FIXES:
+1. Capitalize the first letter of each pokemon's name
+2. add their id numbers to each card
 */
