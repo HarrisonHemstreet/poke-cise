@@ -105,3 +105,4 @@ BUG FIXES:
 1. Capitalize the first letter of each pokemon's name
 2. add their id numbers to each card
 */
+
