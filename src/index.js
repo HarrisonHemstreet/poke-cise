@@ -106,4 +106,7 @@ BUG FIXES:
 2. add their id numbers to each card
 */
 
-
+/*
+Instead of looking for a csv of exercises or whatever, I could just create a random exercise machine thing
+and make a list of random exercises and the reps and such
+*/
